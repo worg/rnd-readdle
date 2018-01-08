@@ -1,3 +1,3 @@
 import React from 'react';
 
-export default () => <div>CATEGORY</div>;
+export default (props) => <div>CATEGORY {console.warn('PROPS', props)}</div>;

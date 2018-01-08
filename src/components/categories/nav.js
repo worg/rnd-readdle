@@ -1,15 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import classnames from 'classnames';
 
-const CategoryNav = ({ categories }) => (
+const CategoryNav = ({ categories, path }) => (
   <nav className='categories'>
-    {Object.keys(categories).map(name => (
-      <Link
-        className='category-link'
-        to={`/${categories[name].path}`} >
-        {name}
-      </Link>
-    ))}
+    <h3>Categories</h3>
+    {Object.keys(categories).map(name => {
+      const link = `/${categories[name].path}`;
+      return (
+        <Link
+          className={classnames('category-link', {
+            active: path.indexOf(link) > -1,
+          })}
+          to={link} >
+          {name}
+        </Link>
+      )
+    })}
   </nav>
 );
 

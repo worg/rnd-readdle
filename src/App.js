@@ -11,13 +11,13 @@ import Category from './components/categories';
 import CategoryNav from './components/categories/nav';
 import Post from './components/posts';
 
-import { fetchPosts } from './actions';
+import { fetchPosts, fetchCategories } from './actions';
 
 import './App.css';
 
 class App extends PureComponent {
   state = {
-    loadCount: 0
+    loadCount: 0,
   }
 
   componentWillMount() {
@@ -25,15 +25,32 @@ class App extends PureComponent {
   }
 
   fetchData = () => {
-    const { posts } = this.props;
-
+    const { posts, categories } = this.props;
+    let loadCount = 0;
     if (!posts.fetched) {
-      this.props.fetchPosts();
+      this.props.fetchPosts().then(() => {
+        this.setState(s => ({
+          loadCount: s.loadCount - 1,
+        }));
+      });
+      loadCount++;
     }
+    if (!categories.fetched) {
+      this.props.fetchCategories().then(() => {
+        this.setState(s => ({
+          loadCount: s.loadCount - 1,
+        }));
+      });
+      loadCount++;
+    }
+
+    this.setState({
+      loadCount,
+    });
   }
 
   render() {
-    console.warn('THIS:', this);
+    const { loadCount } = this.state;
     return (
       <div className="App">
         <header className="App-header">
@@ -42,7 +59,11 @@ class App extends PureComponent {
               Readdle
             </h1>
           </Link>
-          <CategoryNav categories={this.props.categories}/>
+          {loadCount === 0 && (
+            <CategoryNav
+              path={this.props.location.pathname}
+              categories={this.props.categories.byName}/>
+          )}
         </header>
         <div className='App-intro'>
           <Switch>
@@ -67,6 +88,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = {
   fetchPosts,
+  fetchCategories,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

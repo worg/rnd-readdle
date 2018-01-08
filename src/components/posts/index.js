@@ -1,3 +1,3 @@
 import React from 'react';
 
-export default () => <div>POST</div>;
+export default (props) => <div>POST {console.warn('PROPS', props)}</div>;

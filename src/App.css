@@ -24,10 +24,62 @@
 }
 
 .App-header .categories {
-  
+  max-width: 80vw;
+  margin: 0 auto;
+}
+
+.App-header .categories a {
+  margin: 0 .25em;
+  padding: .2em .25em;
+  border: 1px solid #ccc;
+  transition: all .125s ease-in-out;
+}
+
+.App-header .categories a:hover,
+.App-header .categories a:active,
+.App-header .categories a.active {
+  background: #ccc;
+  color: #000;
+}
+
+.App-header .categories h3 {
+  font-size: 1rem;
+  font-weight: normal;
+  text-transform: uppercase;
 }
 
 .App-intro {
   font-size: large;
   padding: 1em .5em;
+}
+
+.post-list {
+  list-style: none;
+  text-align: left;
+  margin: .25em;
+  padding: 0;
+  max-height: 20vh;
+  overflow-y: auto;
+}
+
+.post-list .post {
+  position: sticky;
+  border-bottom: 1px solid #ccc;
+  display: block;
+  top: 0;
+  background: rgba(220,220,220,.95);
+}
+
+@supports (backdrop-filter: none) {
+  .post-list .post {
+    backdrop-filter: blur(22px) contrast(.3) brightness(1.3);
+    background: rgba(255,255,255,.3);
+  }
+}
+
+.post-list .post a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  padding: .5em;
 }
