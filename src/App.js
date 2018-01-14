@@ -76,6 +76,7 @@ class App extends PureComponent {
               component={Category} />
           </Switch>
         </div>
+        <div className='float-button add'>+</div>
       </div>
     );
   }

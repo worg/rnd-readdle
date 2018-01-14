@@ -83,3 +83,28 @@
   display: block;
   padding: .5em;
 }
+
+.float-button.add {
+  position: fixed;
+  cursor: pointer;
+  right: 1rem;
+  bottom: 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 2rem;
+  line-height: 2.2rem;
+  text-align: center;
+  border-radius: 100%;
+  background-color: #001F3F;
+  color: #81A2BE;
+  box-shadow: 0 2px 5px 1px rgba(0,0,0,.3);
+  transition: all .15s ease-in-out;
+}
+
+.float-button.add:hover:not(:active) {
+  cursor: pointer !important;
+  background-color: #287DC6;
+  color: #FAFAFA;
+  bottom: 1.025rem;
+  box-shadow: 0 3px 7px 1px rgba(0,0,0,.5);
+}
