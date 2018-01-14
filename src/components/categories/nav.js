@@ -9,13 +9,14 @@ const CategoryNav = ({ categories, path }) => (
       const link = `/${categories[name].path}`;
       return (
         <Link
+          key={name}
           className={classnames('category-link', {
             active: path.indexOf(link) > -1,
           })}
           to={link} >
           {name}
         </Link>
-      )
+      );
     })}
   </nav>
 );

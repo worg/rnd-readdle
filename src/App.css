@@ -44,6 +44,8 @@
 
 .App-header .categories h3 {
   font-size: 1rem;
+  margin: 0;
+  padding: .5rem 0;
   font-weight: normal;
   text-transform: uppercase;
 }
