@@ -5,13 +5,16 @@ import {
   Link,
  } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import { OBJ } from './utils/constants';
 import Home from './components/home';
 import Category from './components/categories';
 import CategoryNav from './components/categories/nav';
 import Post from './components/posts';
 
-import { fetchPosts, fetchCategories } from './actions';
+import { 
+  fetchPosts,
+  fetchCategories,
+} from './actions';
 
 import './App.css';
 
@@ -66,15 +69,19 @@ class App extends PureComponent {
           )}
         </header>
         <div className='App-intro'>
-          <Switch>
-            <Route exact path='/' component={Home} />
-            <Route
-              path='/:category/:post'
-              component={Post} />
-            <Route
-              path='/:category'
-              component={Category} />
-          </Switch>
+          {this.props.posts.byId === OBJ ? (
+            <i className='fa fa-asterisk fa-spin' />
+          ) : (
+            <Switch>
+              <Route exact path='/' component={Home} />
+              <Route
+                path='/:category/:post'
+                component={Post} />
+              <Route
+                path='/:category'
+                component={Category} />
+            </Switch>
+          )}
         </div>
         <div className='float-button add'>+</div>
       </div>
