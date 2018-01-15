@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
+import { distanceInWords } from 'date-fns';
 import Sorter from './sorter';
 
 const PostItem = ({ post }) => (
@@ -13,6 +14,12 @@ const PostItem = ({ post }) => (
         </div>
         <div className='comments'>
           {post.commentCount} <i className='fa fa-comment' />
+        </div>
+        <div className='date'>
+          · {distanceInWords(
+            new Date(),
+            new Date(post.timestamp),
+            { addSuffix: true })}
         </div>
       </div>
     </Link>
