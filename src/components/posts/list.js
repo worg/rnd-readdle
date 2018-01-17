@@ -37,6 +37,10 @@ export default class PostList extends PureComponent {
     sortBy: 'timestamp',
   };
 
+  static defaultProps = {
+    title: 'All Posts',
+  };
+
   changeSort = ({ target }) => {
     this.setState({
       sortBy: target.value,
@@ -51,7 +55,7 @@ export default class PostList extends PureComponent {
     return (
       <div className='posts-container'>
         <div className='action-area'>
-          <h3>Posts</h3>
+          <h3>{this.props.title}</h3>
           <Sorter
             sortBy={this.state.sortBy}
             changeSort={this.changeSort} />
