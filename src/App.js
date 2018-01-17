@@ -5,11 +5,15 @@ import {
   Link,
  } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Rodal from 'rodal';
 import { OBJ } from './utils/constants';
 import Home from './components/home';
 import Category from './components/categories';
 import CategoryNav from './components/categories/nav';
 import Post from './components/posts';
+
+// include styles
+import 'rodal/lib/rodal.css';
 
 import { 
   fetchPosts,
@@ -21,6 +25,7 @@ import './App.css';
 class App extends PureComponent {
   state = {
     loadCount: 0,
+    modalOn: false,
   }
 
   componentWillMount() {
@@ -84,6 +89,9 @@ class App extends PureComponent {
           )}
         </div>
         <div className='float-button add'>+</div>
+        <Rodal visible={this.state.modalOn} onClose={() => {}}>
+            <div>Content</div>
+        </Rodal>
       </div>
     );
   }

@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "date-fns": "^1.29.0",
-    "prop-types": "^15.6.0"
+    "prop-types": "^15.6.0",
+    "rodal": "^1.6.3"
   }
 }
