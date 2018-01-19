@@ -11,6 +11,7 @@ import Home from './components/home';
 import Category from './components/categories';
 import CategoryNav from './components/categories/nav';
 import Post from './components/posts';
+import PostForm from './components/posts/form';
 
 import { 
   fetchPosts,
@@ -57,9 +58,6 @@ class App extends PureComponent {
     });
   }
 
-  handleAdd = () => {
-  }
-
   render() {
     const { loadCount } = this.state;
     return (
@@ -100,7 +98,9 @@ class App extends PureComponent {
           visible={this.props.modal.isOn}
           onClose={this.props.closeModal} >
             {this.props.modal.isOn && (
-              <div>Content</div>
+              <PostForm
+                modal={this.props.modal}
+                categories={this.props.categories.byName} />
             )}
         </Rodal>
       </div>
@@ -108,7 +108,7 @@ class App extends PureComponent {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state) => ({
   posts: state.posts,
   categories: state.categories,
   modal: state.modal,
