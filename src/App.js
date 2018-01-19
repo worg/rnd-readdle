@@ -12,20 +12,20 @@ import Category from './components/categories';
 import CategoryNav from './components/categories/nav';
 import Post from './components/posts';
 
-// include styles
-import 'rodal/lib/rodal.css';
-
 import { 
   fetchPosts,
   fetchCategories,
+  setAddModal,
+  closeModal,
 } from './actions';
 
 import './App.css';
+// include rodal styles
+import 'rodal/lib/rodal.css';
 
 class App extends PureComponent {
   state = {
     loadCount: 0,
-    modalOn: false,
   }
 
   componentWillMount() {
@@ -55,6 +55,9 @@ class App extends PureComponent {
     this.setState({
       loadCount,
     });
+  }
+
+  handleAdd = () => {
   }
 
   render() {
@@ -88,9 +91,17 @@ class App extends PureComponent {
             </Switch>
           )}
         </div>
-        <div className='float-button add'>+</div>
-        <Rodal visible={this.state.modalOn} onClose={() => {}}>
-            <div>Content</div>
+        <div
+          className='float-button add'
+          onClick={this.props.setAddModal} >
+          +
+        </div>
+        <Rodal
+          visible={this.props.modal.isOn}
+          onClose={this.props.closeModal} >
+            {this.props.modal.isOn && (
+              <div>Content</div>
+            )}
         </Rodal>
       </div>
     );
@@ -100,11 +111,14 @@ class App extends PureComponent {
 const mapStateToProps = (state, ownProps) => ({
   posts: state.posts,
   categories: state.categories,
+  modal: state.modal,
 });
 
 const mapDispatchToProps = {
   fetchPosts,
   fetchCategories,
+  setAddModal,
+  closeModal,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
