@@ -1,4 +1,8 @@
 import * as API from '../utils/api';
+import {
+  MODAL_ADD,
+  MODAL_HIDE,
+} from '../reducers/modal';
 export const LIST_POSTS = 'LIST_POSTS';
 export const LIST_CATEGORIES = 'LIST_CATEGORIES';
 
@@ -23,3 +27,12 @@ export const fetchCategories = () => dispatch => (
     listCategories(categories)
   ))
 );
+
+// Modal Actions
+export const setAddModal = () => ({
+  type: MODAL_ADD,
+});
+
+export const closeModal = () => ({
+  type: MODAL_HIDE,
+});
