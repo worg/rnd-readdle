@@ -1,5 +1,13 @@
 import { OBJ } from '../utils/constants';
-import { LIST_POSTS } from '../actions';
+import { 
+  LIST_POSTS,
+  ADD_POST,
+} from '../actions';
+
+const ById = (posts) => posts.filter(p => !p.deleted).reduce((p, c) => {
+  p[c.id] = c;
+  return p;
+}, {});
 
 // ------------------------------------
 // POSTS Reducer
@@ -8,14 +16,22 @@ import { LIST_POSTS } from '../actions';
 const ACTION_HANDLERS = {
   [LIST_POSTS]: (state, action) => {
     const { posts } = action;
-    const byId = posts.concat(posts).filter(p => !p.deleted).reduce((p, c) => {
-      p[c.id] = c;
-      return p;
-    }, {});
+    const byId = ById(posts);
 
     return Object.assign({}, state , {
       byId,
       fetched: true,
+    });
+  },
+
+  [ADD_POST]: (state, action) => {
+    const { byId: posts } = state;
+    const byId = ById(
+      Object.values(posts).concat(action.post)
+    );
+
+    return Object.assign({}, state, {
+      byId,
     });
   },
 };
