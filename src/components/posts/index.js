@@ -4,6 +4,7 @@ import { Notification } from 'react-notification';
 import {
   setEditModal,
   removePost,
+  votePost,
 } from '../../actions';
 import { OBJ } from '../../utils/constants';
 
@@ -32,13 +33,18 @@ export class Post extends Component {
     });
   }
 
+  handleVote = (e) => {
+    const isUpvote = e.currentTarget.dataset['type'] === 'upvote';
+    this.props.votePost(this.props.post.id, isUpvote);
+  }
+
   render() {
     const { post } = this.props;
     return (
       <div className='post-detail'>
         <div className='post-head'>
           <h2 className='post-title'>{post.title}</h2>
-          <div className='action-items'>
+          <div className='post-action-items'>
             <button
               onClick={this.handleEdit}
               title='edit post'>
@@ -50,11 +56,15 @@ export class Post extends Component {
               <i className='fa fa-trash fa-fw' />
             </button>
             <button
-              onClick={()=>{}}
+              onClick={this.handleVote}
+              data-type='upvote'
               title='upvote post'>
               <i className='fa fa-thumbs-up fa-fw' />
             </button>
-            <button title='upvote post'>
+            <button
+              data-type='downvote'
+              onClick={this.handleVote}
+              title='downvote post'>
               <i className='fa fa-thumbs-down fa-fw' />
             </button>
           </div>
@@ -88,6 +98,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = {
   editPost: setEditModal,
   removePost,
+  votePost,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);
