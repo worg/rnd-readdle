@@ -1,3 +1,4 @@
+import { haiku } from './haiku';
 
 const API_URL = 'http://localhost:3001';
 
@@ -5,6 +6,12 @@ const API_URL = 'http://localhost:3001';
 let token = localStorage.token;
 if (!token)
   token = localStorage.token = Math.random().toString(36).substr(-8);
+// Default username
+export let USERNAME = localStorage.username || haiku();
+
+if (!localStorage.username) {
+  localStorage.username = USERNAME;
+}
 
 const headers = {
   'Authorization': token,
@@ -28,7 +35,7 @@ export const postsByCat = category =>
 
 export const addPost = post => fetchAPI(`/posts`, {
   method: 'POST',
-  body: JSON.stringify(post),
+  body: JSON.stringify({ ...post, author: USERNAME }),
 });
 
 export const editPost = (id, post) => fetchAPI(`/posts/${id}`, {
