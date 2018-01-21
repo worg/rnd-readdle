@@ -15,6 +15,8 @@ import PostForm from './components/posts/form';
 
 import { 
   fetchPosts,
+  createPost,
+  modifyPost,
   fetchCategories,
   setAddModal,
   closeModal,
@@ -99,8 +101,11 @@ class App extends PureComponent {
           onClose={this.props.closeModal} >
             {this.props.modal.isOn && (
               <PostForm
+                closeModal={this.props.closeModal}
                 modal={this.props.modal}
-                categories={this.props.categories.byName} />
+                categories={this.props.categories.byName}
+                onAdd={this.props.createPost}
+                onEdit={this.props.modifyPost} />
             )}
         </Rodal>
       </div>
@@ -119,6 +124,8 @@ const mapDispatchToProps = {
   fetchCategories,
   setAddModal,
   closeModal,
+  createPost,
+  modifyPost,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
