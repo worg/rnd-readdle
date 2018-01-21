@@ -2,6 +2,7 @@ import { OBJ } from '../utils/constants';
 import { 
   LIST_POSTS,
   ADD_POST,
+  EDIT_POST,
 } from '../actions';
 
 const ById = (posts) => posts.filter(p => !p.deleted).reduce((p, c) => {
@@ -29,6 +30,19 @@ const ACTION_HANDLERS = {
     const byId = ById(
       Object.values(posts).concat(action.post)
     );
+
+    return Object.assign({}, state, {
+      byId,
+    });
+  },
+
+  [EDIT_POST]: (state, action) => {
+    const { byId: posts } = state;
+    const { post } = action;
+    const old = posts[post.id];
+    const byId = Object.assign({}, posts,  {
+      [post.id]: Object.assign({}, old, post),
+    });
 
     return Object.assign({}, state, {
       byId,

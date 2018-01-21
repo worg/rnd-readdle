@@ -17,4 +17,9 @@
   margin: .5rem auto;
   font-size: .8rem;
   resize: none;
+  width: 80%;
+}
+
+.post-form textarea {
+  min-height: 200px;
 }

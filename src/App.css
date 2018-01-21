@@ -189,8 +189,10 @@ textarea:focus {
   border-bottom-color: #287DC6;
 }
 
+button,
 input[type=submit],
 .float-button.add {
+  outline: none;
   border: none;
   cursor: pointer;
   color: #81A2BE;
@@ -199,6 +201,7 @@ input[type=submit],
   transition: all .25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+button:hover:not(:active),
 input[type=submit]:hover:not(:active),
 .float-button.add:hover:not(:active) {
   background-color: #287DC6;

@@ -97,6 +97,7 @@ class App extends PureComponent {
           +
         </div>
         <Rodal
+          height={480}
           visible={this.props.modal.isOn}
           onClose={this.props.closeModal} >
             {this.props.modal.isOn && (

@@ -1,6 +1,7 @@
 import * as API from '../utils/api';
 import {
   MODAL_ADD,
+  MODAL_EDIT,
   MODAL_HIDE,
 } from '../reducers/modal';
 export const LIST_POSTS = 'LIST_POSTS';
@@ -42,7 +43,7 @@ export const createPost = post => dispatch => (
 export const addPost = post => ({
   type: ADD_POST,
   post,
-})
+});
 
 export const modifyPost = post => dispatch => (
   API.editPost(post.id, post).then(r => dispatch(
@@ -69,6 +70,11 @@ export const deletePost = post => ({
 // Modal Actions
 export const setAddModal = () => ({
   type: MODAL_ADD,
+});
+
+export const setEditModal = (post) => ({
+  type: MODAL_EDIT,
+  post,
 });
 
 export const closeModal = () => ({

@@ -12,7 +12,7 @@ const ACTION_HANDLERS = {
   [MODAL_EDIT]: (state, action) => {
     return Object.assign({}, state, {
       isOn: true,
-      action: 'edit',
+      action: 'EDIT',
       data: action.post,
     });
   },
