@@ -1,14 +1,15 @@
 import * as API from '../utils/api';
-import {
-  MODAL_ADD,
-  MODAL_EDIT,
-  MODAL_HIDE,
-} from '../reducers/modal';
+// Category constants
 export const LIST_POSTS = 'LIST_POSTS';
 export const LIST_CATEGORIES = 'LIST_CATEGORIES';
+// Post constants
 export const ADD_POST = 'ADD_POST';
 export const EDIT_POST = 'EDIT_POST';
 export const DELETE_POST = 'DELETE_POST';
+// Modal constants
+export const MODAL_EDIT = 'MODAL_EDIT';
+export const MODAL_ADD = 'MODAL_ADD';
+export const MODAL_HIDE = 'MODAL_HIDE';
 
 // Category actions
 export const listCategories = categories => ({

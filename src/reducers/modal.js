@@ -1,9 +1,9 @@
 import { OBJ } from '../utils/constants';
-
-export const MODAL_EDIT = 'MODAL_EDIT';
-export const MODAL_ADD = 'MODAL_ADD';
-export const MODAL_HIDE = 'MODAL_HIDE';
-
+import {
+  MODAL_ADD,
+  MODAL_EDIT,
+  MODAL_HIDE,
+} from '../actions';
 // ------------------------------------
 // Reducer MODAL
 // ------------------------------------
