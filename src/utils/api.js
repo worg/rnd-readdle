@@ -7,7 +7,8 @@ if (!token)
   token = localStorage.token = Math.random().toString(36).substr(-8);
 
 const headers = {
-  'Authorization': token
+  'Authorization': token,
+  'Content-Type': 'application/json',
 };
 
 const fetchAPI = (path, opts = {}) =>
@@ -24,6 +25,20 @@ export const getPosts = (id = false) =>
 
 export const postsByCat = category =>
   fetchAPI(`/${category}/posts`);
+
+export const addPost = post => fetchAPI(`/posts`, {
+  method: 'POST',
+  body: JSON.stringify(post),
+});
+
+export const editPost = (id, post) => fetchAPI(`/posts/${id}`, {
+  method: 'PUT',
+  body: JSON.stringify(post),
+});
+
+export const deletePost = (id) => fetchAPI(`/posts/${id}`, {
+  method: 'DELETE',
+});
 
 export const postComments = id =>
   fetchAPI(`/posts/${id}/comments`);
