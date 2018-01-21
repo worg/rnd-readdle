@@ -1,0 +1,17 @@
+.post-detail .post-head {
+  margin-bottom: 2rem;
+}
+
+.post-detail .post-title {
+  margin: 0 auto;
+  padding: .5rem;
+}
+
+.post-detail .action-items button {
+  font-size: .9rem;
+  padding: .25rem .5rem;
+}
+
+.post-detail .action-items button:hover {
+  position: relative;
+}
