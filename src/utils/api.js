@@ -47,6 +47,11 @@ export const deletePost = (id) => fetchAPI(`/posts/${id}`, {
   method: 'DELETE',
 });
 
+export const votePost = (id, upvote = false) => fetchAPI(`/posts/${id}`, {
+  method: 'POST',
+  body: JSON.stringify({ option: upvote ? 'upVote' : 'downVote' }),
+});
+
 export const postComments = id =>
   fetchAPI(`/posts/${id}/comments`);
 

@@ -6,6 +6,7 @@ export const LIST_CATEGORIES = 'LIST_CATEGORIES';
 export const ADD_POST = 'ADD_POST';
 export const EDIT_POST = 'EDIT_POST';
 export const DELETE_POST = 'DELETE_POST';
+export const VOTE_POST = 'VOTE_POST';
 // Modal constants
 export const MODAL_EDIT = 'MODAL_EDIT';
 export const MODAL_ADD = 'MODAL_ADD';
@@ -67,6 +68,12 @@ export const deletePost = post => ({
   type: DELETE_POST,
   post,
 });
+ 
+export const votePost = (id, upvote = false) => dispatch => (
+  API.votePost(id, upvote).then(r => dispatch(
+    editPost(r)
+  ))
+);
 
 // Modal Actions
 export const setAddModal = () => ({
