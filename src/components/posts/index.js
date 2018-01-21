@@ -1,14 +1,35 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setEditModal } from '../../actions';
+import { Notification } from 'react-notification';
+import {
+  setEditModal,
+  removePost,
+} from '../../actions';
 import { OBJ } from '../../utils/constants';
 
 import './post.css';
 
 export class Post extends Component {
+  state = {
+    showConfirm: false,
+  }
+
   handleEdit = () => {
     const { post, editPost } = this.props;
     editPost(post);
+  }
+
+  confirmDelete = () => {
+    this.setState(state =>({
+      showConfirm: !state.showConfirm,
+    }));
+  }
+
+  handleDelete = () => {
+    const { post, removePost, history } = this.props;
+    removePost(post.id).then(() => {
+      history.replace('/');
+    });
   }
 
   render() {
@@ -24,7 +45,7 @@ export class Post extends Component {
               <i className='fa fa-edit fa-fw' />
             </button>
             <button
-              onClick={()=>{}}
+              onClick={this.confirmDelete}
               title='delete post'>
               <i className='fa fa-trash fa-fw' />
             </button>
@@ -41,6 +62,14 @@ export class Post extends Component {
           <div className='post-body'>{post.body}</div>
         <div className='post-comments'>
         </div>
+        <Notification
+          isActive={this.state.showConfirm}
+          message='Are you sure?'
+          action='Ok'
+          title='Post will be deleted!'
+          dismissAfter={3e3}
+          onDismiss={this.confirmDelete}
+          onClick={this.handleDelete} />
       </div>
     );
   }
@@ -58,6 +87,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = {
   editPost: setEditModal,
+  removePost,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);
