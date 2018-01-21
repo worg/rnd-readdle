@@ -67,7 +67,7 @@
 
 .post-list .post {
   border-bottom: 1px solid #ccc;
-  display: block;
+  display: flex;
   top: 0;
   background: #EDEFF2;
   transition: all .2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -94,6 +94,12 @@
   text-decoration: none;
   display: block;
   padding: .5rem;
+  flex: 1 auto;
+}
+
+.post-list .post .post-action-items {
+  display: flex;
+  box-shadow: none;
 }
 
 .post-list .post-item-title {

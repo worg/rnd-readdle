@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import { distanceInWords } from 'date-fns';
 import Sorter from './sorter';
+import Actions from './actions';
 
 const PostItem = ({ post }) => (
   <li className='post'>
@@ -23,6 +24,7 @@ const PostItem = ({ post }) => (
         </div>
       </div>
     </Link>
+    <Actions post={post} />
   </li>
 );
 
@@ -63,6 +65,7 @@ export default class PostList extends PureComponent {
         <ul className='post-list'>
         {posts.map(p => 
           <PostItem
+            onEdit={this.handleEdit}
             key={p.id}
             post={p} />
         )}

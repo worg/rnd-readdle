@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router'
 import { Notification } from 'react-notification';
 import {
   setEditModal,
@@ -79,4 +80,6 @@ const mapDispatchToProps = {
   votePost,
 };
 
-export default connect(null, mapDispatchToProps)(PostActions);
+export default withRouter(
+  connect(null, mapDispatchToProps)(PostActions)
+);

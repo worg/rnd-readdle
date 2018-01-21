@@ -14,7 +14,7 @@ const Sorter = ({ changeSort, sortBy }) => (
     <label
       title='sort by date'
       htmlFor='sort-none'>
-        <i className='fa fa-clock' />
+        <i className='fa fa-clock fa-fw' />
     </label>
     <input
       defaultChecked={sortBy === 'votes'}
@@ -25,7 +25,7 @@ const Sorter = ({ changeSort, sortBy }) => (
     <label
       title='sort by votes'
       htmlFor='sort-votes'>
-        <i className='fa fa-heart' />
+        <i className='fa fa-thumbs-up fa-fw' />
     </label>
     <input
       defaultChecked={sortBy === 'comments'}
@@ -36,7 +36,7 @@ const Sorter = ({ changeSort, sortBy }) => (
     <label
       title='sort by comments'
       htmlFor='sort-comments'>
-        <i className='fa fa-comment' />
+        <i className='fa fa-comment fa-fw' />
     </label>
   </div>
 );
