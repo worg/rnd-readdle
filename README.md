@@ -14,7 +14,12 @@ Using yarn
 Using npm
 `npm start`
 
-This starts a server and opens your default browser pointing to the project
+This starts a server and opens your default browser pointing to the project.
+
+#### API Server
+
+The project assumes you have running [reactnd-project-readable-starter](https://github.com/udacity/reactnd-project-readable-starter) on the default port.
+
 
 ## LICENSE:
 
