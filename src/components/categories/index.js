@@ -9,7 +9,7 @@ const mapStateToProps = ({ posts }, { match }) => {
     }),
     title: category,
     filter: category,
-  }
+  };
 };
 
-export default connect(mapStateToProps)(PostList)
+export default connect(mapStateToProps)(PostList);
