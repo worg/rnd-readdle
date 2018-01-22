@@ -11,6 +11,8 @@ export const VOTE_POST = 'VOTE_POST';
 export const MODAL_EDIT = 'MODAL_EDIT';
 export const MODAL_ADD = 'MODAL_ADD';
 export const MODAL_HIDE = 'MODAL_HIDE';
+// Comments constants
+export const LIST_COMMENTS = 'LIST_COMMENTS';
 
 // Category actions
 export const listCategories = categories => ({
@@ -74,6 +76,18 @@ export const votePost = (id, upvote = false) => dispatch => (
     editPost(r)
   ))
 );
+
+// Comments actions
+export const fetchComments = id => dispatch => (
+  API.postComments(id).then(r => dispatch(
+    listComments(r)
+  ))
+);
+
+export const listComments = comments => ({
+  type: LIST_COMMENTS,
+  comments,
+});
 
 // Modal Actions
 export const setAddModal = () => ({
