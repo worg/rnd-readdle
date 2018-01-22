@@ -27,41 +27,23 @@ import './App.css';
 import 'rodal/lib/rodal.css';
 
 class App extends PureComponent {
-  state = {
-    loadCount: 0,
-  }
-
   componentWillMount() {
     this.fetchData();
   }
 
   fetchData = () => {
     const { posts, categories } = this.props;
-    let loadCount = 0;
     if (!posts.fetched) {
-      this.props.fetchPosts().then(() => {
-        this.setState(s => ({
-          loadCount: s.loadCount - 1,
-        }));
-      });
-      loadCount++;
-    }
-    if (!categories.fetched) {
-      this.props.fetchCategories().then(() => {
-        this.setState(s => ({
-          loadCount: s.loadCount - 1,
-        }));
-      });
-      loadCount++;
+      this.props.fetchPosts();
     }
 
-    this.setState({
-      loadCount,
-    });
+    if (!categories.fetched) {
+      this.props.fetchCategories();
+    }
   }
 
   render() {
-    const { loadCount } = this.state;
+    const { posts, categories, modal } = this.props;
     return (
       <div className="App">
         <header className="App-header">
@@ -70,14 +52,14 @@ class App extends PureComponent {
               Readdle
             </h1>
           </Link>
-          {loadCount === 0 && (
+          {categories.fetched && (
             <CategoryNav
               path={this.props.location.pathname}
-              categories={this.props.categories.byName}/>
+              categories={categories.byName}/>
           )}
         </header>
         <div className='App-intro'>
-          {this.props.posts.byId === OBJ ? (
+          {posts.byId === OBJ ? (
             <i className='fa fa-asterisk fa-spin' />
           ) : (
             <Switch>
@@ -98,13 +80,13 @@ class App extends PureComponent {
         </div>
         <Rodal
           height={480}
-          visible={this.props.modal.isOn}
+          visible={modal.isOn}
           onClose={this.props.closeModal} >
-            {this.props.modal.isOn && (
+            {modal.isOn && (
               <PostForm
                 closeModal={this.props.closeModal}
-                modal={this.props.modal}
-                categories={this.props.categories.byName}
+                modal={modal}
+                categories={categories.byName}
                 onAdd={this.props.createPost}
                 onEdit={this.props.modifyPost} />
             )}
