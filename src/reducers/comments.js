@@ -1,7 +1,8 @@
 import { OBJ } from '../utils/constants';
 import { ById } from '../utils/data';
 import {
-  LIST_COMMENTS
+  LIST_COMMENTS,
+  CLEAR_COMMENTS,
 } from '../actions';
 
 // ------------------------------------
@@ -18,6 +19,7 @@ const ACTION_HANDLERS = {
       fetched: true,
     });
   },
+  [CLEAR_COMMENTS]: () => initialState,
 };
 
 const initialState = { byId: OBJ, fetched: false }

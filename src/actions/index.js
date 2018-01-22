@@ -13,6 +13,7 @@ export const MODAL_ADD = 'MODAL_ADD';
 export const MODAL_HIDE = 'MODAL_HIDE';
 // Comments constants
 export const LIST_COMMENTS = 'LIST_COMMENTS';
+export const CLEAR_COMMENTS = 'CLEAR_COMMENTS';
 
 // Category actions
 export const listCategories = categories => ({
@@ -87,6 +88,10 @@ export const fetchComments = id => dispatch => (
 export const listComments = comments => ({
   type: LIST_COMMENTS,
   comments,
+});
+
+export const clearComments = () => ({
+  type: CLEAR_COMMENTS,
 });
 
 // Modal Actions

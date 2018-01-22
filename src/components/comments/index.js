@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { distanceInWords } from 'date-fns';
 import {
   fetchComments,
+  clearComments,
 } from '../../actions';
 
 const CommentItem = ({ comment, ...props }) => (
@@ -42,6 +43,10 @@ export class CommentList extends Component {
     this.props.fetchComments(this.props.post.id);
   }
 
+  componentWillUnmount() {
+    this.props.clearComments();
+  }
+
   render() {
     const { comments, fetched } = this.props;
     if (!fetched) {
@@ -65,6 +70,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   fetchComments,
+  clearComments,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentList);
