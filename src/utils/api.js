@@ -1,6 +1,6 @@
 import { haiku } from './haiku';
 
-const API_URL = 'http://localhost:3001';
+const API_URL = `http://${global.location.hostname}:3001`;
 
 // Generate a unique token for each user
 let token = localStorage.token;
@@ -12,6 +12,10 @@ export let USERNAME = localStorage.username || haiku();
 if (!localStorage.username) {
   localStorage.username = USERNAME;
 }
+
+export const setUserName = (username) => {
+  USERNAME = localStorage.username = username;
+};
 
 const headers = {
   'Authorization': token,
