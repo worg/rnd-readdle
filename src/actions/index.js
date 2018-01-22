@@ -98,6 +98,11 @@ export const clearComments = () => ({
   type: CLEAR_COMMENTS,
 });
 
+export const createComment = comment => dispatch => (
+  API.addComment(comment).then(r => dispatch(
+    addComment(r),
+  ))
+);
 
 export const addComment = comment => ({
   type: ADD_COMMENT,

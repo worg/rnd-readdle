@@ -22,6 +22,18 @@ const ACTION_HANDLERS = {
       fetched: true,
     });
   },
+
+  [ADD_COMMENT]: (state, action) => {
+    const { byId: comments } = state;
+    const byId = ById(
+      Object.values(comments).concat(action.comment)
+    );
+
+    return Object.assign({}, state, {
+      byId,
+    });
+  },
+
   [EDIT_COMMENT]: (state, action) => {
     const { byId: comments } = state;
     const { comment } = action;
@@ -34,6 +46,7 @@ const ACTION_HANDLERS = {
       byId,
     });
   },
+
   [DELETE_COMMENT]: (state, action) => {
     const { byId: comments } = state;
     const { comment } = action;
@@ -44,6 +57,7 @@ const ACTION_HANDLERS = {
       byId,
     });
   },
+
   [CLEAR_COMMENTS]: () => initialState,
 };
 

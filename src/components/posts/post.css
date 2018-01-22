@@ -26,6 +26,22 @@
   max-width: 80vw;
 }
 
+.post-detail .comments-list .comment-add-form {
+  margin-bottom: 1rem;
+}
+
+.post-detail .comments-list .add-comment-body {
+  width: 100%;
+  min-height: 3rem;
+  font-size: .9rem;
+  padding: .5rem;
+}
+
+.post-detail .comments-list .comment-save {
+  padding: .5rem;
+  font-size: .9rem;
+}
+
 .comment-item {
   top: 0;
   position: sticky;

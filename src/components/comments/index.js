@@ -4,23 +4,26 @@ import { Notification } from 'react-notification';
 import classnames from 'classnames';
 import serialize from 'form-serialize';
 import { distanceInWords } from 'date-fns';
+import uuid from 'uuid/v1';
 import {
   fetchComments,
   clearComments,
   modifyComment,
   voteComment,
   removeComment,
+  createComment,
 } from '../../actions';
 
 const CommentItem = ({ comment, ...props }) => (
   <div className='comment-item'>
     {props.isEditing ? [
       <input
+        keu='fedit'
         name='body'
         autoFocus
         defaultValue={comment.body}
         className='comment-body' />,
-      <input name='id' type='hidden' value={comment.id} />
+      <input key='fid' name='id' type='hidden' value={comment.id} />
     ]:(
       <div className='comment-body'>
         {comment.body}
@@ -38,24 +41,30 @@ const CommentItem = ({ comment, ...props }) => (
       </div>
       <div className='comment-author'>{comment.author}</div>
       <div className='comment-actions'>
-        <button data-id={comment.id} onClick={props.onEdit}>
+        <button
+          type='button'
+          data-id={comment.id}
+          onClick={props.onEdit}>
           <i className={classnames('fa fa-fw', {
             'fa-edit': !props.isEditing,
             'fa-save': props.isEditing,
           })} />
         </button>
         <button
+          type='button'
           data-id={comment.id}
           onClick={props.onDelete}>
           <i className='fa fa-trash fa-fw' />
         </button>
         <button
+          type='button'
           data-id={comment.id}
           data-type='upvote'
           onClick={props.onVote}>
           <i className='fa fa-thumbs-up fa-fw' />
         </button>
         <button
+          type='button'
           data-id={comment.id}
           data-type='downvote'
           onClick={props.onVote}>
@@ -99,8 +108,15 @@ export class CommentList extends Component {
     });
   }
 
-  handleChange = (e) => {
+  handleAdd = (e) => {
     e.preventDefault();
+    const comment = serialize(this._form, { hash: true });
+    this.props.createComment({
+      id: uuid().replace(/-/g, ''),
+      timestamp: Date.now(),
+      parentId: comment.parentId,
+      body: comment['comment-body'],
+    });
   }
 
   handleVote = (e) => {
@@ -133,17 +149,35 @@ export class CommentList extends Component {
       return  (<i className='fa fa-asterisk fa-spin' />);
     }
 
+    const commentsList = Object.values(comments).sort((a, b) => (
+      a.timestamp < b.timestamp
+    ));
+
     return (
       <form
         ref={e => this._form = e}
         className='comments-list'
-        onSubmit={this.handleChange}>
-        {Object.values(comments).map((c, i) => (
+        onSubmit={this.handleAdd}>
+        <div className='comment-add-form'>
+          <textarea
+            required
+            className='add-comment-body'
+            name='comment-body'
+            placeholder='add some nice words' />
+          <input
+            type='hidden'
+            name='parentId'
+            value={commentsList[0].parentId} />
+          <input
+            className='comment-save'
+            type='submit'
+            value='comment!' />
+        </div>
+        {commentsList.map((c, i) => (
           <CommentItem
             key={i}
             isEditing={c.id === this.state.editing}
             onEdit={this.handleEdit}
-            onChange={this.handleChange}
             onVote={this.handleVote}
             onDelete={this.confirmDelete}
             comment={c} />
@@ -172,6 +206,7 @@ const mapDispatchToProps = {
   clearComments,
   voteComment,
   removeComment,
+  createComment,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentList);
