@@ -1,4 +1,5 @@
 import { OBJ } from '../utils/constants';
+import { ById } from '../utils/data';
 import { 
   LIST_POSTS,
   ADD_POST,
@@ -6,10 +7,6 @@ import {
   DELETE_POST,
 } from '../actions';
 
-const ById = (posts) => posts.filter(p => !p.deleted).reduce((p, c) => {
-  p[c.id] = c;
-  return p;
-}, {});
 
 // ------------------------------------
 // POSTS Reducer
