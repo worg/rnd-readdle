@@ -55,6 +55,14 @@
   border-top: 10px solid #81A2BE;
 }
 
+.comment-item input.comment-body {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  /*background: #fafafa;*/
+}
+
 .comment-item .comment-info {
   display: flex;
   justify-content: center;
@@ -76,7 +84,5 @@
   padding: 0 .5rem;
   position: relative;
 }
-
-
 
 .comment-item .comment-actions { display: flex; } 

@@ -3,6 +3,9 @@ import { ById } from '../utils/data';
 import {
   LIST_COMMENTS,
   CLEAR_COMMENTS,
+  ADD_COMMENT,
+  EDIT_COMMENT,
+  DELETE_COMMENT,
 } from '../actions';
 
 // ------------------------------------
@@ -17,6 +20,28 @@ const ACTION_HANDLERS = {
     return Object.assign({}, state , {
       byId,
       fetched: true,
+    });
+  },
+  [EDIT_COMMENT]: (state, action) => {
+    const { byId: comments } = state;
+    const { comment } = action;
+    const old = comments[comment.id];
+    const byId = Object.assign({}, comments,  {
+      [comment.id]: Object.assign({}, old, comment),
+    });
+
+    return Object.assign({}, state, {
+      byId,
+    });
+  },
+  [DELETE_COMMENT]: (state, action) => {
+    const { byId: comments } = state;
+    const { comment } = action;
+    const byId = Object.assign({}, comments);
+    delete byId[comment.id];
+
+    return Object.assign({}, state, {
+      byId,
     });
   },
   [CLEAR_COMMENTS]: () => initialState,
