@@ -144,7 +144,7 @@ export class CommentList extends Component {
   }
 
   render() {
-    const { comments, fetched } = this.props;
+    const { comments, fetched, post } = this.props;
     if (!fetched) {
       return  (<i className='fa fa-asterisk fa-spin' />);
     }
@@ -167,7 +167,7 @@ export class CommentList extends Component {
           <input
             type='hidden'
             name='parentId'
-            value={commentsList[0].parentId} />
+            value={post.id} />
           <input
             className='comment-save'
             type='submit'
