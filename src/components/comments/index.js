@@ -13,6 +13,10 @@ import {
   removeComment,
   createComment,
 } from '../../actions';
+import {
+  USERNAME,
+  setUserName,
+} from '../../utils/api';
 
 const CommentItem = ({ comment, ...props }) => (
   <div className='comment-item'>
@@ -38,6 +42,7 @@ const CommentItem = ({ comment, ...props }) => (
             new Date(comment.timestamp),
             { addSuffix: true })}
         </span>
+        <span className='author'> by {comment.author}</span>
       </div>
       <div className='comment-author'>{comment.author}</div>
       <div className='comment-actions'>
@@ -111,11 +116,18 @@ export class CommentList extends Component {
   handleAdd = (e) => {
     e.preventDefault();
     const comment = serialize(this._form, { hash: true });
+    const { author } = comment;
+
+    if (author !== USERNAME) {
+      setUserName(author);
+    }
+
     this.props.createComment({
       id: uuid().replace(/-/g, ''),
       timestamp: Date.now(),
       parentId: comment.parentId,
       body: comment['comment-body'],
+      author,
     });
   }
 
@@ -159,6 +171,12 @@ export class CommentList extends Component {
         className='comments-list'
         onSubmit={this.handleAdd}>
         <div className='comment-add-form'>
+          <input
+            type='text'
+            name='author'
+            title='username'
+            placeholder='Your name here'
+            defaultValue={USERNAME} />
           <textarea
             required
             className='add-comment-body'

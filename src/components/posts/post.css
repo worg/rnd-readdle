@@ -43,11 +43,16 @@
   margin-bottom: 1rem;
 }
 
-.post-detail .comments-list .add-comment-body {
+.post-detail .comment-add-form textarea, 
+.post-detail .comment-add-form input[type=text] {
   width: 100%;
-  min-height: 3rem;
   font-size: .9rem;
   padding: .5rem;
+  margin-bottom: .5rem
+}
+
+.post-detail .comment-add-form textarea {
+  min-height: 3rem;
 }
 
 .post-detail .comments-list .comment-save {
