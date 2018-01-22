@@ -57,3 +57,22 @@ export const postComments = id =>
 
 export const getComment = id =>
   fetchAPI(`/comments/${id}`);
+
+export const addComment = comment => fetchAPI(`/comments`, {
+  method: 'POST',
+  body: JSON.stringify({ ...comment, author: USERNAME }),
+});
+
+export const editComment = (id, comment) => fetchAPI(`/comments/${id}`, {
+  method: 'PUT',
+  body: JSON.stringify(comment),
+});
+
+export const deleteComment = (id) => fetchAPI(`/comments/${id}`, {
+  method: 'DELETE',
+});
+
+export const voteComment = (id, upvote = false) => fetchAPI(`/comments/${id}`, {
+  method: 'POST',
+  body: JSON.stringify({ option: upvote ? 'upVote' : 'downVote' }),
+});

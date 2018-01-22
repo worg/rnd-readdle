@@ -14,6 +14,10 @@ export const MODAL_HIDE = 'MODAL_HIDE';
 // Comments constants
 export const LIST_COMMENTS = 'LIST_COMMENTS';
 export const CLEAR_COMMENTS = 'CLEAR_COMMENTS';
+export const ADD_COMMENT = 'ADD_COMMENT';
+export const EDIT_COMMENT = 'EDIT_COMMENT';
+export const DELETE_COMMENT = 'DELETE_COMMENT';
+export const VOTE_COMMENT = 'VOTE_COMMENT';
 
 // Category actions
 export const listCategories = categories => ({
@@ -93,6 +97,40 @@ export const listComments = comments => ({
 export const clearComments = () => ({
   type: CLEAR_COMMENTS,
 });
+
+
+export const addComment = comment => ({
+  type: ADD_COMMENT,
+  comment,
+});
+
+export const modifyComment = comment => dispatch => (
+  API.editComment(comment.id, comment).then(r => dispatch(
+    editComment(r),
+  ))
+);
+
+export const editComment = comment => ({
+  type: EDIT_COMMENT,
+  comment,
+});
+
+export const removeComment = id => dispatch => (
+  API.deleteComment(id).then(r => dispatch(
+    deleteComment(r),
+  ))
+);
+
+export const deleteComment = comment => ({
+  type: DELETE_COMMENT,
+  comment,
+});
+ 
+export const voteComment = (id, upvote = false) => dispatch => (
+  API.voteComment(id, upvote).then(r => dispatch(
+    editComment(r)
+  ))
+);
 
 // Modal Actions
 export const setAddModal = () => ({
