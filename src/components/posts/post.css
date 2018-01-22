@@ -20,6 +20,19 @@
   padding-top: 2rem;
 }
 
+.post-detail .post-meta  {
+  display: flex;
+  font-size: .9rem;
+  margin: .5rem auto;
+  text-align: center;
+  justify-content: center;
+  color: #ccc;
+}
+
+.post-detail .post-meta div {
+  padding: 0 .25rem;
+}
+
 .post-detail .comments-list {
   margin: 0 auto;
   text-align: left;
