@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Actions from './actions';
+import CommentList from '../comments';
 import { OBJ } from '../../utils/constants';
 
 import './post.css';
@@ -13,6 +14,8 @@ export const Post = ({ post }) => (
     </div>
     <div className='post-body'>{post.body}</div>
     <div className='post-comments'>
+      <h4>comments</h4>
+      <CommentList post={post} />
     </div>
   </div>
 );
