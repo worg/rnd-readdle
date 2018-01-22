@@ -61,7 +61,7 @@ const ACTION_HANDLERS = {
   [CLEAR_COMMENTS]: () => initialState,
 };
 
-const initialState = { byId: OBJ, fetched: false }
+const initialState = { byId: OBJ, fetched: false };
 
 export default function comments(state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type];

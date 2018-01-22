@@ -30,7 +30,7 @@ export default class Form extends Component {
 
     const apiCall = this.props[method];
     if (typeof apiCall !== 'function') {
-      return
+      return;
     }
 
     apiCall(formData).then(this.props.closeModal);
