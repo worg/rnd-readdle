@@ -1,6 +1,6 @@
 import { haiku } from './haiku';
 
-const API_URL = `http://${global.location.hostname}:3001`;
+const API_URL = process.env.REACT_APP_API_SERVER || 'http://localhost:3001';
 
 // Generate a unique token for each user
 let token = localStorage.token;
