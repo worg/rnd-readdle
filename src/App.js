@@ -70,11 +70,9 @@ class App extends PureComponent {
                 path='/404'
                 component={NotFound} />
               <Route
-                exact
                 path='/:category/:post'
                 component={Post} />
               <Route
-                exact
                 path='/:category'
                 component={Category} />
             </Switch>

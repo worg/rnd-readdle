@@ -41,10 +41,11 @@ const mapStateToProps = (state, ownProps) => {
     match: { params: { post: postId } },
     history,
    } = ownProps;
-  const post = state.posts.byId[postId] || OBJ;
+  const { posts } = state;
+  const post = posts.byId[postId] || OBJ;
 
   // redirect to not found route
-  if (post === OBJ) {
+  if (posts.byId !== OBJ && post === OBJ) {
     history.replace('/404');
   }
 
