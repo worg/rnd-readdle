@@ -12,6 +12,7 @@ import Category from './components/categories';
 import CategoryNav from './components/categories/nav';
 import Post from './components/posts';
 import PostForm from './components/posts/form';
+import NotFound from './components/notfound';
 
 import { 
   fetchPosts,
@@ -65,9 +66,15 @@ class App extends PureComponent {
             <Switch>
               <Route exact path='/' component={Home} />
               <Route
+                exact
+                path='/404'
+                component={NotFound} />
+              <Route
+                exact
                 path='/:category/:post'
                 component={Post} />
               <Route
+                exact
                 path='/:category'
                 component={Category} />
             </Switch>
