@@ -6,7 +6,7 @@ import {
   ADD_COMMENT,
   EDIT_COMMENT,
   DELETE_COMMENT,
-} from '../actions';
+} from '../actions/types';
 
 // ------------------------------------
 // Comments Reducer

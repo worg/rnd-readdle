@@ -3,7 +3,7 @@ import {
   MODAL_ADD,
   MODAL_EDIT,
   MODAL_HIDE,
-} from '../actions';
+} from '../actions/types';
 // ------------------------------------
 // Reducer MODAL
 // ------------------------------------

@@ -5,7 +5,7 @@ import {
   ADD_POST,
   EDIT_POST,
   DELETE_POST,
-} from '../actions';
+} from '../actions/types';
 
 
 // ------------------------------------

@@ -1,27 +1,9 @@
 import * as API from '../utils/api';
-// Category constants
-export const LIST_POSTS = 'LIST_POSTS';
-export const LIST_CATEGORIES = 'LIST_CATEGORIES';
-// Post constants
-export const ADD_POST = 'ADD_POST';
-export const EDIT_POST = 'EDIT_POST';
-export const DELETE_POST = 'DELETE_POST';
-export const VOTE_POST = 'VOTE_POST';
-// Modal constants
-export const MODAL_EDIT = 'MODAL_EDIT';
-export const MODAL_ADD = 'MODAL_ADD';
-export const MODAL_HIDE = 'MODAL_HIDE';
-// Comments constants
-export const LIST_COMMENTS = 'LIST_COMMENTS';
-export const CLEAR_COMMENTS = 'CLEAR_COMMENTS';
-export const ADD_COMMENT = 'ADD_COMMENT';
-export const EDIT_COMMENT = 'EDIT_COMMENT';
-export const DELETE_COMMENT = 'DELETE_COMMENT';
-export const VOTE_COMMENT = 'VOTE_COMMENT';
+import * as types from './types';
 
 // Category actions
 export const listCategories = categories => ({
-  type: LIST_CATEGORIES,
+  type: types.LIST_CATEGORIES,
   categories,
 });
 
@@ -39,7 +21,7 @@ export const fetchPosts = () => dispatch => (
 );
 
 export const listPosts = posts => ({
-  type: LIST_POSTS,
+  type: types.LIST_POSTS,
   posts,
 });
 
@@ -50,7 +32,7 @@ export const createPost = post => dispatch => (
 );
 
 export const addPost = post => ({
-  type: ADD_POST,
+  type: types.ADD_POST,
   post,
 });
 
@@ -61,7 +43,7 @@ export const modifyPost = post => dispatch => (
 );
 
 export const editPost = post => ({
-  type: EDIT_POST,
+  type: types.EDIT_POST,
   post,
 });
 
@@ -72,7 +54,7 @@ export const removePost = id => dispatch => (
 );
 
 export const deletePost = post => ({
-  type: DELETE_POST,
+  type: types.DELETE_POST,
   post,
 });
  
@@ -90,12 +72,12 @@ export const fetchComments = id => dispatch => (
 );
 
 export const listComments = comments => ({
-  type: LIST_COMMENTS,
+  type: types.LIST_COMMENTS,
   comments,
 });
 
 export const clearComments = () => ({
-  type: CLEAR_COMMENTS,
+  type: types.CLEAR_COMMENTS,
 });
 
 export const createComment = comment => dispatch => (
@@ -105,7 +87,7 @@ export const createComment = comment => dispatch => (
 );
 
 export const addComment = comment => ({
-  type: ADD_COMMENT,
+  type: types.ADD_COMMENT,
   comment,
 });
 
@@ -116,7 +98,7 @@ export const modifyComment = comment => dispatch => (
 );
 
 export const editComment = comment => ({
-  type: EDIT_COMMENT,
+  type: types.EDIT_COMMENT,
   comment,
 });
 
@@ -127,7 +109,7 @@ export const removeComment = id => dispatch => (
 );
 
 export const deleteComment = comment => ({
-  type: DELETE_COMMENT,
+  type: types.DELETE_COMMENT,
   comment,
 });
  
@@ -139,14 +121,14 @@ export const voteComment = (id, upvote = false) => dispatch => (
 
 // Modal Actions
 export const setAddModal = () => ({
-  type: MODAL_ADD,
+  type: types.MODAL_ADD,
 });
 
 export const setEditModal = (post) => ({
-  type: MODAL_EDIT,
+  type: types.MODAL_EDIT,
   post,
 });
 
 export const closeModal = () => ({
-  type: MODAL_HIDE,
+  type: types.MODAL_HIDE,
 });

@@ -1,5 +1,5 @@
 import { OBJ } from '../utils/constants';
-import { LIST_CATEGORIES } from '../actions';
+import { LIST_CATEGORIES } from '../actions/types';
 
 // ------------------------------------
 // CATEGORIES Reducer
