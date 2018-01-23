@@ -22,6 +22,7 @@ const PostItem = ({ post }) => (
             new Date(post.timestamp),
             { addSuffix: true })}
         </div>
+        <div className='author'>by {post.author}</div>
       </div>
     </Link>
     <Actions post={post} />

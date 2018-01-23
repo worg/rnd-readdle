@@ -24,6 +24,7 @@ export const Post = ({ post }) => (
             new Date(post.timestamp),
             { addSuffix: true })}
         </div>
+        <div className='author'>by {post.author}</div>
       </div>
       <Actions post={post} />
     </div>
